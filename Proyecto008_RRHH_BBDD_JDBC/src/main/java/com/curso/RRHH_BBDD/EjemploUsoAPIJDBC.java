@@ -2,6 +2,7 @@ package com.curso.RRHH_BBDD;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -41,10 +42,23 @@ public class EjemploUsoAPIJDBC {
 				System.out.println(rs.getString(1)+" "+ rs.getString(2)+" "+ rs.getString(3));
 				
 			}
-			//4 insertar un pais
-			 String sentaciInsert ="INSERT INTO HR.COUNTRIES VALUES ('XX', 'PAISXX', '4')";
-			 int regAfectado = st.executeUpdate(sentaciInsert);
-			 System.out.printf("insero %d registro", regAfectado);
+			//4 INSER insertar un pais
+			// String sentaciInsert ="INSERT INTO HR.COUNTRIES VALUES ('XX', 'PAISXX', '4')";
+			 //int regAfectado = st.executeUpdate(sentaciInsert);
+			// System.out.printf("insero %d registro", regAfectado);
+			 
+			 
+			 //UPDATE country
+			 //Metodo 1
+			 String updateString ="UPDATE HR.COUNTRIES SET COUNTRY_NAME = 'BELGICA' WHERE COUNTRY_ID LIKE 'BE' ";
+			 st.executeUpdate(updateString);
+			 
+			 //Metodo2 
+			 PreparedStatement updateCountry2 = con.prepareStatement("UPDATE HR.COUNTRIES SET COUNTRY_NAME = ? WHERE COUNTRY_ID LIKE ? ");
+			 updateCountry2.setString(1, "Suiza");
+			 updateCountry2.setString(2, "CH");
+			 updateCountry2.executeUpdate();
+			 
 			System.out.println("conectó ok");
 		} catch (SQLException e) {
 
