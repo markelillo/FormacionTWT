@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public final class poolConexiones {
 
 	private String url = "jdbc:oracle:thin:@localhost:49161:xe";
-	private String usr = "system";
-	private String clave = "oracle";
+	private String usr = "HR";
+	private String clave = "hr";
 
 	public poolConexiones() {
 		// cargar driver

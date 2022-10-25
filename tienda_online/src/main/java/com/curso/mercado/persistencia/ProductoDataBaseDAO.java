@@ -1,6 +1,7 @@
 package com.curso.mercado.persistencia;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,7 +20,32 @@ public class ProductoDataBaseDAO implements GenericDAO<Producto> {
 
 	@Override
 	public void add(Producto entidad) {
-		// TODO Auto-generated method stub
+		PreparedStatement insertProducto;
+		try {
+			String idMax = "SELECT MAX(ID_PRODUCTO) AS IDMAX "
+					+ "FROM HR.PRODUCTOS";
+			//creo el statement
+			////crear el resulset
+			// el resultset lo ejecuto con idmax
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(idMax);
+			int maxid = 0;
+			//
+			if (rs.next()) {
+				 maxid=rs.getInt("IDMAX");
+				
+			}
+			insertProducto = con.prepareStatement("INSERT INTO HR.PRODUCTOS(ID_PRODUCTO, DESCRIPCION, PRECIO, STOCK) VALUES (?, ?, ?, ?) ");
+			insertProducto.setInt(1, ++maxid);
+			insertProducto.setString(2, entidad.getDescripcion());
+			insertProducto.setDouble(3, entidad.getPrecio());
+			insertProducto.setInt(4, entidad.getStock());
+			insertProducto.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
