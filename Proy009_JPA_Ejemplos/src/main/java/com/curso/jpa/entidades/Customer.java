@@ -1,6 +1,7 @@
 package com.curso.jpa.entidades;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Objects;
 
 import javax.persistence.*;
@@ -22,7 +23,9 @@ public class Customer implements Serializable {
 	@JoinColumn(name="CUSTRECORD_RECID") // la columna que va a ser foranea
 	private Record record;
 
-	
+	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+	//mappedby es el nombre de la clase order que tiene la relacion @ManyToOne
+	private Collection<Order> pedidos;
 	
 	public Customer() {
 		super();
@@ -57,6 +60,14 @@ public class Customer implements Serializable {
 
 	public void setRecord(Record record) {
 		this.record = record;
+	}
+	
+	public Collection<Order> getPedidos() {
+		return pedidos;
+	}
+	
+	public void setPedidos(Collection<Order> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	@Override
