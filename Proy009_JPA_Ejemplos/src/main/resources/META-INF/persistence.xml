@@ -9,6 +9,7 @@
 	                  transaction-type="RESOURCE_LOCAL">          
 		<!-- las clases entidad (tablas) -->
 		<class>com.curso.jpa.entidades.Trabajo</class>
+		<class>com.curso.jpa.entidades.Empleado</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver" />
