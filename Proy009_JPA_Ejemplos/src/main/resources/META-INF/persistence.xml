@@ -10,6 +10,8 @@
 		<!-- las clases entidad (tablas) -->
 		<class>com.curso.jpa.entidades.Trabajo</class>
 		<class>com.curso.jpa.entidades.Empleado</class>
+		<class>com.curso.jpa.entidades.Record</class>
+		<class>com.curso.jpa.entidades.Customer</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver" />
