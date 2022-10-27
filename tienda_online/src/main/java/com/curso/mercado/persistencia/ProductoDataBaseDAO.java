@@ -22,11 +22,10 @@ public class ProductoDataBaseDAO implements GenericDAO<Producto> {
 	public void add(Producto entidad) {
 		PreparedStatement insertProducto;
 		try {
+			//obtengo el mayo id
 			String idMax = "SELECT MAX(ID_PRODUCTO) AS IDMAX "
 					+ "FROM HR.PRODUCTOS";
-			//creo el statement
-			////crear el resulset
-			// el resultset lo ejecuto con idmax
+			
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(idMax);
 			int maxid = 0;
@@ -43,8 +42,8 @@ public class ProductoDataBaseDAO implements GenericDAO<Producto> {
 			insertProducto.executeUpdate();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException("no se pude crear el producto "+ e.getMessage(), e);
+			
 		}
 
 	}
