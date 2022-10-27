@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-
+import com.curso.jpa.entidades.Departamento;
 import com.curso.jpa.entidades.Empleado;
 
 public class PruebasEmpleado {
@@ -49,7 +49,7 @@ public class PruebasEmpleado {
 			empleadoMod.setEmail("a@a.com");
 			empleadoMod.setTelefono("484654684664");
 			empleadoMod.setFechaContratacion(new java.util.Date());
-			empleadoMod.setIdDepartamento(10);
+			empleadoMod.setDepartamento(new Departamento());
 			empleadoMod.setIdTrabajo("ST_MAN");
 			em.persist(empleadoMod);
 			System.out.println("se creo el empleado");

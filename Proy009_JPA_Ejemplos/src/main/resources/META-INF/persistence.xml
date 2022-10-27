@@ -13,6 +13,8 @@
 		<class>com.curso.jpa.entidades.Record</class>
 		<class>com.curso.jpa.entidades.Customer</class>
 		<class>com.curso.jpa.entidades.Order</class>
+		<class>com.curso.jpa.entidades.Departamento</class>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes><!-- te inclue odas las clases que tenga @entity -->
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver" />
