@@ -102,14 +102,16 @@ public class PruebasConsulasJPA {
 
 		// objeto Predicate que va montando las condiciones del where
 		Predicate miwhere = null;
-		List<Predicate> condiciones = new ArrayList<>();
-
+		//List<Predicate> condiciones = new ArrayList<>();
+		//predicado es una cioondicion(camion = "ASd")
+		Predicate condicionManager = null;
+		
 		if (nombre != null) {
-			condiciones.add(cd.equal(empleado.get("nombre"), nombre));
+			condiciones.add(cd.equal(empleado.get("nombre"), nombre));//Campo== valor
 
 		}
 		if (lastname != null) {
-			condiciones.add(cd.equal(empleado.get("apellidos"), lastname));
+			condicionesManager= cd.equal(empleado.get("apellidos"), lastname);
 
 		}
 		if (salario != null) {
