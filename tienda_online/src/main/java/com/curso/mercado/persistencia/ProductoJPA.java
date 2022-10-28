@@ -3,23 +3,27 @@ package com.curso.mercado.persistencia;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 import com.curso.mercado.entidades.Producto;
 
 public class ProductoJPA implements GenericDAO<Producto> {
-
+	private static EntityManagerFactory factory;
+	static {
+		factory = Persistence.createEntityManagerFactory("OracleHRPU");
+	}
 	@Override
 	public void add(Producto entidad) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("OracleHRPU");
+		
 		EntityManager em = factory.createEntityManager();
 		Producto pNuevo = new Producto();
 		pNuevo.setIdProducto(entidad.getIdProducto());
 		pNuevo.setDescripcion(entidad.getDescripcion());
 		pNuevo.setPrecio(entidad.getPrecio());
+		pNuevo.setStock(5);
 		em.getTransaction().begin();
 		em.persist(pNuevo);
 		
@@ -29,11 +33,11 @@ public class ProductoJPA implements GenericDAO<Producto> {
 
 	@Override
 	public List<Producto> getAll() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("OracleHRPU");
+		Persistence.createEntityManagerFactory("OracleHRPU");
 		EntityManager em = factory.createEntityManager();
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		
-		Query query = em.createQuery("select p from Producto p");
+		Query query = em.createQuery("SELECT p FROM Producto p");
 		List<Producto> lista =  query.getResultList();
 		
 		for (Producto prod : lista) {
@@ -46,6 +50,7 @@ public class ProductoJPA implements GenericDAO<Producto> {
 			
 		}
 		return productos;
+		//return lista;
 	}
 
 	@Override
@@ -56,7 +61,13 @@ public class ProductoJPA implements GenericDAO<Producto> {
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+		Producto pbor = new Producto();
+		pbor.setIdProducto(id);
+		Producto Caborrar = em.find(Producto.class, pbor.getIdProducto());
+		em.remove(Caborrar);
+		em.getTransaction().commit();
 		
 	}
 

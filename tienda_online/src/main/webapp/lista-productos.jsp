@@ -62,7 +62,9 @@
 					<!--  <td><a href="comprar?idProducto=${producto.idProducto}">Comprar
 							1 unidad</a></td>-->
 					<td><a href="comprar?idProducto=${producto.idProducto}"
-						class="btn btn-warning">Comprar 1</a></td>
+						class="btn btn-success">Comprar 1</a>
+					<a href="borrar?idProducto=${producto.idProducto}"
+						class="btn btn-danger">Eliminar Producto</a></td>
 				</tr>
 			</c:forEach>
 

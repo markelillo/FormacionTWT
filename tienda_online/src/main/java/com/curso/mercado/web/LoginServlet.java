@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.curso.mercado.entidades.Usuario;
+import com.curso.mercado.persistencia.ProductoJPA;
 
 @WebServlet(urlPatterns = "login",loadOnStartup = 1)
 public class LoginServlet extends HttpServlet {
@@ -32,6 +33,7 @@ public class LoginServlet extends HttpServlet {
     	// es para todos los usuarios en todas las pagínas/Servlets/jsp
     	System.out.println("..... " + config.getServletContext());
     	config.getServletContext().setAttribute("tituloTienda", "LAS MARAVILLAS");
+    	//new ProductoJPA();
     }
 
     
