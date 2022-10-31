@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+//@Service (value= "nominas")
 public class NominasServiceImp implements NominasService{
-	@Autowired//injecta en la variable de referecia irpfService  ina instancia de IRPFServiceImp
+	@Autowired//injecta en la variable de referecia irpfService hace  una instancia de IRPFServiceImp
 	private IRPFService irpfService;
-	
+	//es basicamente instanciar una clase dentro dentro de otra
 	
 	 public NominasServiceImp() {
 		System.out.println("...instanciondo Nominas servic imp");
@@ -15,7 +16,7 @@ public class NominasServiceImp implements NominasService{
 	
 	
 	
-	
+	//la instacia es para usar este metodo
 	@Override
 	public void CalcularNomina() {
 		System.out.printf("tu nomina es  %f con un"

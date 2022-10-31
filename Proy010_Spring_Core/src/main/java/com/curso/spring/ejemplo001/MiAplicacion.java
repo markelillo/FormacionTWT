@@ -20,6 +20,7 @@ public class MiAplicacion {
 
 		// crea un contenedor de BeansSpring
 		// es el que maneja el ciclo de vida de los ojtos
+		//los instacia
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("mis-beans.xml");
 //con el lazy init en el xml lo que haceinstanciarlo al poner el ClassPathXmlApplicationContext
 		SaludoService s1 = (SaludoService) ctx.getBean("saludador1");

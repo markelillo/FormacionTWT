@@ -1,0 +1,18 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:annotation-config />
+	<!--SIN ANOTACIONES
+	 <bean id="jefe1" class="com.curso.spring.practica001.JefeEquipo"></bean>
+	<bean id="prog1" class="com.curso.spring.practica001.Programador"></bean>
+	<bean id="prog2" class="com.curso.spring.practica001.Programador">
+	<qualifier value ="progJava"/>-->
+	<!-- busca el metodo SetTarea (este caso de set tareta de Programador) -->
+	<!--  <property name="tarea" value="Programar en java"></property>
+	</bean> -->
+	
+	<context:component-scan base-package="com.curso.spring.practica001"></context:component-scan>
+</beans>
