@@ -12,7 +12,7 @@ import com.curso.mercado.persistencia.ProductoJPA;
 public class ProductosService {
 	
 	GenericDAO<Producto> dao;
-	
+
 	public ProductosService() {
 		poolConexiones pool = new poolConexiones();
 		//dao = new ProductoDataBaseDAO(pool.getConnection());
@@ -33,6 +33,10 @@ public class ProductosService {
 	
 	public void  borrarProducto(int id) {
 		dao.delete(id);
+	}
+	
+	public void  AñadirStock(int id) {
+		dao.updateStock(id);
 	}
 
 }

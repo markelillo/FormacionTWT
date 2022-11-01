@@ -74,7 +74,19 @@ public class ProductoJPA implements GenericDAO<Producto> {
 	@Override
 	public void update(Producto entidad) {
 		// TODO Auto-generated method stub
-		
 	}
 
+
+	@Override
+	public void updateStock(int id) {
+		EntityManager em = factory.createEntityManager();
+		Producto t = em.find(Producto.class, id);
+		int stock = t.getStock();
+		t.setStock(stock+1);
+		em.getTransaction().begin();
+		Producto countyEnBD = em.merge(t);
+		em.getTransaction().commit();
+	}
+	
+	
 }

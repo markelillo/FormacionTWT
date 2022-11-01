@@ -46,4 +46,10 @@ public class ProductoInMemoryDAO implements GenericDAO<Producto> {
 		
 	}
 
+	@Override
+	public void updateStock(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

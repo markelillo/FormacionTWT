@@ -64,7 +64,9 @@
 					<td><a href="comprar?idProducto=${producto.idProducto}"
 						class="btn btn-success">Comprar 1</a>
 					<a href="borrar?idProducto=${producto.idProducto}"
-						class="btn btn-danger">Eliminar Producto</a></td>
+						class="btn btn-danger">Eliminar Producto</a>
+					<a href="update?idProducto=${producto.idProducto}"
+						class="btn btn-warning">Añadir Stock</a></td>
 				</tr>
 			</c:forEach>
 
