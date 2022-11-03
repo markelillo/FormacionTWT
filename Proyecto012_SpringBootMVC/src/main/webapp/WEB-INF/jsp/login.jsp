@@ -11,8 +11,10 @@
 <form:form action="login" method="post" modelAttribute="usuarioForm"><!-- modelAtribute se sincroiza con el que esta el loggincontrollermodel.addatribute -->
 <form:label path="nombre">nombre Usuario:</form:label>
 <form:input path="nombre" />
+<form:errors path="nombre" style="color:red"></form:errors></br>
 <form:label path="clave">Password:</form:label>
 <form:password path="clave" />
+<form:errors path="clave" style="color:red"></form:errors></br>
 <form:button onclick="/login">LOGIN</form:button>
 </form:form>
 </body>

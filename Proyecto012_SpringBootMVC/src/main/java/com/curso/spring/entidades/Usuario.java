@@ -3,9 +3,19 @@ package com.curso.spring.entidades;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Usuario implements Serializable{
+	
+	@NotNull
+	@Size(min=2, max=20)
 	private String nombre;
+	@NotNull
+	@Size(min=5, max=20)
 	private String clave;
+	
 	private String rol;
 
 	public Usuario() {
