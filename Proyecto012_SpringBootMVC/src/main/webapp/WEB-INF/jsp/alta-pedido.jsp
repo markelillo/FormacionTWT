@@ -15,7 +15,7 @@
 <form:errors path="desc" style="color:red"></form:errors></br>
 
 <form:label path="entregado">Entregado a cliente:</form:label>
-<form:input path="entregado" />
+<form:checkbox path="entregado" />
 <form:errors path="entregado" style="color:red"></form:errors></br>
 <form:button >Crear Pedido</form:button>
 </form:form>
