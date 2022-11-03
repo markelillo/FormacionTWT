@@ -23,5 +23,15 @@ public class PedidoJPARepositoryImp implements PedidoRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public Collection<Pedido> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Pedido getById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

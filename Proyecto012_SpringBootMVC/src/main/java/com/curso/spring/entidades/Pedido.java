@@ -10,17 +10,17 @@ public class Pedido implements Serializable{
 	private String user;
 	private String desc;
 	private Date fechaPedido;
-	private boolean usuario;
+	private boolean entregado;
 	public Pedido() {
 		super();
 	}
-	public Pedido(Integer id, String user, String desc, Date fechaPedido, boolean usuario) {
+	public Pedido(Integer id, String user, String desc, Date fechaPedido, boolean entregado) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.desc = desc;
 		this.fechaPedido = fechaPedido;
-		this.usuario = usuario;
+		this.entregado = entregado;
 	}
 	public Integer getId() {
 		return id;
@@ -46,11 +46,11 @@ public class Pedido implements Serializable{
 	public void setFechaPedido(Date fechaPedido) {
 		this.fechaPedido = fechaPedido;
 	}
-	public boolean isUsuario() {
-		return usuario;
+	public boolean isEntregado() {
+		return entregado;
 	}
-	public void setUsuario(boolean usuario) {
-		this.usuario = usuario;
+	public void setEntregado(boolean entregado) {
+		this.entregado = entregado;
 	}
 	@Override
 	public int hashCode() {
@@ -69,8 +69,8 @@ public class Pedido implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Pedido [id=" + id + ", user=" + user + ", desc=" + desc + ", fechaPedido=" + fechaPedido + ", usuario="
-				+ usuario + "]";
+		return "Pedido [id=" + id + ", user=" + user + ", desc=" + desc + ", fechaPedido=" + fechaPedido + ", entregado="
+				+ entregado + "]";
 	}
 	
 	

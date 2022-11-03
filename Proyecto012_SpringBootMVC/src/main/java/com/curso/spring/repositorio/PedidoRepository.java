@@ -7,4 +7,6 @@ import com.curso.spring.entidades.Pedido;
 public interface PedidoRepository {
 	void add(Pedido pedido);
 	Collection<Pedido> getPedidoByUser(String user);
+	Collection<Pedido> getAll();
+	Pedido getById(Integer id);
 }

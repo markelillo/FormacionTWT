@@ -17,7 +17,7 @@ public class HomeController {
 		//con el model accedesal session atribute
 		
 		if (model.getAttribute("usuario")==null) {
-			return "redirect:/login";
+			return "redirect:/login";//para que ademas d eir pueda acedra su controllery o derectaente a su jsp sin pasar por el
 		}
 		return "home";
 	}

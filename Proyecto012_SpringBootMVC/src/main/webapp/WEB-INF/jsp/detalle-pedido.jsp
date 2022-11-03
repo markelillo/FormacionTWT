@@ -5,18 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>inicio</title>
+<title>Pedido</title>
 </head>
 <body>
 
-	<h2>Lista de pedidos</h2>
-	<ul>
-		<c:forEach items="${listapedidos}" var="pedido">
-			<li>${pedido.id} - ${pedido.desc}
-			<a href="/pedido?idPedido=${pedido.id}">ver Detalle</a>
-			</li>
-		</c:forEach>
-	</ul>
-
+	<h1>Detalle de pedido</h1>
+id: ${pedido.id}
+</br>
+descipcion:${pedido.desc}
+</br>
+Fecha:${pedido.fechaPedido}
+</br>
+Entregado:${pedido.entregado}
 </body>
 </html>

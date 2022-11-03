@@ -8,11 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form:form action="login" method="post" modelAttribute="usuario"><!-- modelAtribute se sincroiza con el que esta el loggincontrollermodel.addatribute -->
+<form:form action="login" method="post" modelAttribute="usuarioForm"><!-- modelAtribute se sincroiza con el que esta el loggincontrollermodel.addatribute -->
 <form:label path="nombre">nombre Usuario:</form:label>
 <form:input path="nombre" />
 <form:label path="clave">Password:</form:label>
-<form:input path="clave" />
+<form:password path="clave" />
 <form:button onclick="/login">LOGIN</form:button>
 </form:form>
 </body>

@@ -15,43 +15,51 @@ import org.springframework.stereotype.Service;
 import com.curso.spring.entidades.Pedido;
 import com.curso.spring.repositorio.PedidoRepository;
 
-
-
 @Service
 //@Scope(value = "singleton")//por defecto
 //@Lazy//los instacia bajo demanda y solo para los singleton
 public class PedidosServiceImp implements PedidosService {
 	private static Logger log = LoggerFactory.getLogger(PedidosServiceImp.class);
-	
-	@Autowired// te injecta esa clase inserta la clase creada en memoria ram
+
+	@Autowired // te injecta esa clase inserta la clase creada en memoria ram
 	@Qualifier("pedidorepo")
 	private PedidoRepository repo;
-	
+
 	public PedidosServiceImp() {
-		log.info("..instaciando PedidoServiceImp"+repo);
+		log.info("..instaciando PedidoServiceImp" + repo);
 	}
-	
+
 	@PostConstruct
 	public void init() {
-		log.info("poscounstrunct"+ repo);
+		log.info("poscounstrunct" + repo);
 	}
 
 	@Override
 	public void generarPedido(Pedido p) {
 		log.info("gestiono un pedido");
 		repo.add(p);
-		
+
 	}
 
 	@Override
 	public Collection<Pedido> getPedidos(String user) {
-		// TODO Auto-generated method stub
-		return repo.getPedidoByUser(user);
+		if (user == null) {
+			return repo.getAll();
+		}else {
+			return repo.getPedidoByUser(user);
+		}
 	}
-	
-	
-	
 
-	
+	@Override
+	public Collection<Pedido> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Pedido getPedido(Integer id) {
+		// TODO Auto-generated method stub
+		return repo.getById(id);
+	}
 
 }

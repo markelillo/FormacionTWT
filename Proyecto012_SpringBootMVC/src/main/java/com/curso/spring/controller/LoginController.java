@@ -20,16 +20,21 @@ public class LoginController {
 	// fomrulario en el que pido usuario y clave
 	@GetMapping("/login")
 	public String loginPage(Model model) {
-		model.addAttribute("usuario", new Usuario());
+		model.addAttribute("usuarioForm", new Usuario());
 
 		return "login";
 	}
 
 	@PostMapping("/login")
-	public String irAHome(Model model, @ModelAttribute("usuario") Usuario usr) {
-		// boolean vaido = loginService.validarLog(nombreClave)
-		usr.setRol("cliente");
-		model.addAttribute("usuario", usr);
+	public String irAHome(Model model, @ModelAttribute("usuarioForm") Usuario usr) {
+		 boolean valido = true;
+		if (usr.getNombre().trim().equalsIgnoreCase("luis")) {//trim eliminar espacios y equaliarecase compara sin tener en cuenta mayus o minus
+			usr.setRol("cliente");
+		}else {
+			usr.setRol("admin");			
+		}
+		
+		if(valido)model.addAttribute("usuario", usr);//metemos usuarios en la sesion
 
 		return "home";
 	}

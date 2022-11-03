@@ -20,7 +20,7 @@ public class PedidoRepositoryImp implements PedidoRepository {
 		//añado dos pedidos
 		pedidos.put(1, new Pedido(1, "Luis", "Television", new Date(), true));
 		pedidos.put(2, new Pedido(2, "Luis", "Radio", new Date(), true));
-		pedidos.put(3, new Pedido(3, "Hernebegildo", "WalkMan", new Date(), true));
+		pedidos.put(3, new Pedido(3, "pepe", "WalkMan", new Date(), true));
 		id=3;
 	}
 	@Override
@@ -35,11 +35,21 @@ public class PedidoRepositoryImp implements PedidoRepository {
 	public Collection<Pedido> getPedidoByUser(String user) {
 		Collection<Pedido>lista = new ArrayList();
 		for (Pedido p : pedidos.values()) {
-			if (p.getUser().equals(user)) {
+			if (p.getUser().equalsIgnoreCase(user)) {
 				lista.add(p);				
 			}
 		}
 		return lista;
+	}
+	@Override
+	public Collection<Pedido> getAll() {
+		// TODO Auto-generated method stub
+		return pedidos.values();
+	}
+	@Override
+	public Pedido getById(Integer id) {
+		// TODO Auto-generated method stub
+		return pedidos.get(id);
 	}
 
 	
