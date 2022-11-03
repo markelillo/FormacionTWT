@@ -4,16 +4,40 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class Pedido implements Serializable{
-	
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "Pedidos")
+public class Pedido implements Serializable {
+	@Id
+	// @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PED_SEQ")
+	@SequenceGenerator(sequenceName = "PEDIDO_SEQ", name = "PED_SEQ", allocationSize = 1)
 	private Integer id;
+	@Column(name = "USUARIO")
 	private String user;
+	@Column(name = "DESCRIPCION")
+	@NotNull
 	private String desc;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "FECHA_PEDIDO")
 	private Date fechaPedido;
+	@Column(name = "ENTREGADO")
 	private boolean entregado;
+
 	public Pedido() {
 		super();
 	}
+
 	public Pedido(Integer id, String user, String desc, Date fechaPedido, boolean entregado) {
 		super();
 		this.id = id;
@@ -22,40 +46,52 @@ public class Pedido implements Serializable{
 		this.fechaPedido = fechaPedido;
 		this.entregado = entregado;
 	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getUser() {
 		return user;
 	}
+
 	public void setUser(String user) {
 		this.user = user;
 	}
+
 	public String getDesc() {
 		return desc;
 	}
+
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
+
 	public Date getFechaPedido() {
 		return fechaPedido;
 	}
+
 	public void setFechaPedido(Date fechaPedido) {
 		this.fechaPedido = fechaPedido;
 	}
+
 	public boolean isEntregado() {
 		return entregado;
 	}
+
 	public void setEntregado(boolean entregado) {
 		this.entregado = entregado;
 	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(desc);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -67,13 +103,11 @@ public class Pedido implements Serializable{
 		Pedido other = (Pedido) obj;
 		return Objects.equals(desc, other.desc);
 	}
+
 	@Override
 	public String toString() {
-		return "Pedido [id=" + id + ", user=" + user + ", desc=" + desc + ", fechaPedido=" + fechaPedido + ", entregado="
-				+ entregado + "]";
+		return "Pedido [id=" + id + ", user=" + user + ", desc=" + desc + ", fechaPedido=" + fechaPedido
+				+ ", entregado=" + entregado + "]";
 	}
-	
-	
-	
 
 }

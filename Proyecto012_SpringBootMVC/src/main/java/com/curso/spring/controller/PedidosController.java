@@ -1,13 +1,19 @@
 package com.curso.spring.controller;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -49,5 +55,25 @@ public class PedidosController {
 		model.addAttribute("pedido", p);
 		return "detalle-pedido";
 		
+	}
+	
+	@GetMapping("/alta-pedido")
+	public String AltaPedido(Model model) {
+		model.addAttribute("altaForm", new Pedido() );//creo el model para tenga un objeto peido donde lueo se le mee la informacion 
+		return "alta-pedido";
+	}
+	
+	@PostMapping("/alta-pedido")
+	public String AltaPedido(Model model, @Valid @ModelAttribute("altaForm")Pedido ped, BindingResult binding) {
+		if (binding.hasErrors()) {
+			return "alta-pedido";
+		}
+		
+		Usuario u = (Usuario) model.getAttribute("usuario");//usuario dela session del @SessionAttributes("usuario")
+		ped.setUser(u.getNombre());
+		ped.setFechaPedido(new Date());//solo con jpa
+		//model.addAttribute("pedido", pedidoService.añadirPedido(ped));no con jpa
+		model.addAttribute("pedido", pedidoService.añadirPedido(ped));
+		return "detalle-pedido";
 	}
 }

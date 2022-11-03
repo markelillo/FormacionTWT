@@ -10,6 +10,7 @@ public interface PedidosService {
 	Collection<Pedido> getPedidos(String user);
 	Collection<Pedido> getAll();
 	Pedido getPedido(Integer id);
+	Pedido añadirPedido(Pedido p);
 	
 
 }

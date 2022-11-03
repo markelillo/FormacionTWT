@@ -9,4 +9,5 @@ public interface PedidoRepository {
 	Collection<Pedido> getPedidoByUser(String user);
 	Collection<Pedido> getAll();
 	Pedido getById(Integer id);
+	Pedido addPedido(Pedido p);
 }

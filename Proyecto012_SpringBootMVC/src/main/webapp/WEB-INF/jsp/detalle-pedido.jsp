@@ -11,12 +11,10 @@
 <body>
 
 	<h1>Detalle de pedido</h1>
-id: ${pedido.id}
-</br>
-descipcion:${pedido.desc}
-</br>
-Fecha: <fm:formatDate value="${pedido.fechaPedido}" pattern= "dd-MM-yyyy"/>
-</br>
-Entregado:${pedido.entregado}
+	id: ${pedido.id}
+	</br> descipcion:${pedido.desc}
+	</br> Fecha:
+	<fm:formatDate value="${pedido.fechaPedido}" pattern="dd-MM-yyyy" />
+	</br> Entregado:${pedido.entregado}
 </body>
 </html>

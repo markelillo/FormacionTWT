@@ -13,6 +13,7 @@
 	<p>Eres:${usuario.rol}</p>
 	<c:if test = "${usuario.rol eq 'cliente' }">
 	<a href="pedidos/${usuario.nombre}">listar mis pedidos</a>
+	<a href="alta-pedido">añadir pedido</a>
 	</c:if>
 	<c:if test = "${usuario.rol eq 'admin' }">
 	<a href="pedidos">listar todos los pedidos</a>

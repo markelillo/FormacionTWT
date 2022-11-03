@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.curso.spring.entidades.Pedido;
+import com.curso.spring.repositorio.PedidoJPARepository;
 import com.curso.spring.repositorio.PedidoRepository;
 
 @Service
@@ -20,10 +21,14 @@ import com.curso.spring.repositorio.PedidoRepository;
 //@Lazy//los instacia bajo demanda y solo para los singleton
 public class PedidosServiceImp implements PedidosService {
 	private static Logger log = LoggerFactory.getLogger(PedidosServiceImp.class);
-
-	@Autowired // te injecta esa clase inserta la clase creada en memoria ram
+//no se va asar con jpa
+	@Autowired // te injecta esa clase inserta la clase creada en memoria ram tiene qe coincidir con el qualifier de repo y 
+				//solo si hay dos clases que extiendan de la misma interfad sinono hace alta
 	@Qualifier("pedidorepo")
 	private PedidoRepository repo;
+	
+	@Autowired
+	 private PedidoJPARepository repoJPA;
 
 	public PedidosServiceImp() {
 		log.info("..instaciando PedidoServiceImp" + repo);
@@ -37,16 +42,22 @@ public class PedidosServiceImp implements PedidosService {
 	@Override
 	public void generarPedido(Pedido p) {
 		log.info("gestiono un pedido");
-		repo.add(p);
+		//repo.add(p); no con jpa
+		repoJPA.saveAndFlush(p);
+		
 
 	}
 
 	@Override
 	public Collection<Pedido> getPedidos(String user) {
 		if (user == null) {
-			return repo.getAll();
+			//return repo.getAll(); no con jpa
+			return repoJPA.findAll();
 		}else {
-			return repo.getPedidoByUser(user);
+			//return repo.getPedidoByUser(user); no con jpa
+			Pedido pFiltro = new Pedido();
+			pFiltro.setUser(user);
+			return repoJPA.findByUser(user);
 		}
 	}
 
@@ -60,6 +71,12 @@ public class PedidosServiceImp implements PedidosService {
 	public Pedido getPedido(Integer id) {
 		// TODO Auto-generated method stub
 		return repo.getById(id);
+	}
+
+	@Override
+	public Pedido añadirPedido(Pedido p) {
+		return repoJPA.saveAndFlush(p);
+		//return repo.addPedido(p);no con jpa
 	}
 
 }
