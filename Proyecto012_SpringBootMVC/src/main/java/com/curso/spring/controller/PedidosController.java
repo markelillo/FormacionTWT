@@ -76,4 +76,9 @@ public class PedidosController {
 		model.addAttribute("pedido", pedidoService.añadirPedido(ped));
 		return "detalle-pedido";
 	}
+	
+	
+	
+	
+	
 }

@@ -1,6 +1,7 @@
 package com.curso.spring.servicios;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.curso.spring.entidades.Pedido;
 import com.curso.spring.repositorio.PedidoJPARepository;
@@ -19,6 +22,7 @@ import com.curso.spring.repositorio.PedidoRepository;
 @Service
 //@Scope(value = "singleton")//por defecto
 //@Lazy//los instacia bajo demanda y solo para los singleton
+@Transactional(propagation = Propagation.REQUIRED)
 public class PedidosServiceImp implements PedidosService {
 	private static Logger log = LoggerFactory.getLogger(PedidosServiceImp.class);
 //no se va asar con jpa
@@ -28,7 +32,7 @@ public class PedidosServiceImp implements PedidosService {
 	private PedidoRepository repo;
 	
 	@Autowired
-	 private PedidoJPARepository repoJPA;
+	 private PedidoJPARepository repoJPA;//no ace fala crea la clase con el interface te la crea el automaticamente
 
 	public PedidosServiceImp() {
 		log.info("..instaciando PedidoServiceImp" + repo);
@@ -40,15 +44,27 @@ public class PedidosServiceImp implements PedidosService {
 	}
 
 	@Override
-	public void generarPedido(Pedido p) {
+	public void generarPedido(Pedido p) {//hasta ws depsues añadir
 		log.info("gestiono un pedido");
 		//repo.add(p); no con jpa
 		repoJPA.saveAndFlush(p);
 		
 
 	}
+	
+	/* antes de ws
+	 * 
+	 * @Override
+	public void generarPedido(Pedido p) {
+		log.info("gestiono un pedido");
+		//repo.add(p); no con jpa
+		repoJPA.saveAndFlush(p);
+		
+
+	}*/
 
 	@Override
+	@Transactional(readOnly = true)
 	public Collection<Pedido> getPedidos(String user) {
 		if (user == null) {
 			//return repo.getAll(); no con jpa
@@ -67,16 +83,25 @@ public class PedidosServiceImp implements PedidosService {
 		return null;
 	}
 
-	@Override
-	public Pedido getPedido(Integer id) {
-		// TODO Auto-generated method stub
-		return repo.getById(id);
-	}
 
 	@Override
 	public Pedido añadirPedido(Pedido p) {
-		return repoJPA.saveAndFlush(p);
+		//return repoJPA.saveAndFlush(p);//hasta ws
 		//return repo.addPedido(p);no con jpa
+		
+		log.info("gestionando pedido");
+		return repoJPA.save(p);
 	}
 
+	
+	@Override
+	public Pedido getPedido(Integer id) {//solo sin Jpa
+		// TODO Auto-generated method stub
+		//return repo.getById(id); no con jpA
+		Optional<Pedido> p = repoJPA.findById(id);
+		return p.get();
+	}
+
+	
+	
 }
