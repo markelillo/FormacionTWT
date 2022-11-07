@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,5 +48,18 @@ public class PedidosRestfullController {
 	// instert
 	// update
 	// delete
-
+	//en el body {"id":1,"user":"luis","desc":"pizza","fechaPedido":null,"entregado":false} alo asi
+	@PutMapping("/ws/pedidos")
+	public Pedido update(@RequestBody Pedido newPedido) {
+		Pedido pModif = pedidosService.modificar(newPedido);
+		
+		return pModif;
+	}
+	
+	@DeleteMapping("/ws/pedidos/delete/{id}")
+	public Pedido delete(@PathVariable Integer id) {
+		Pedido pconid = pedidosService.eliminar(id);
+		
+		return pconid;
+	}
 }

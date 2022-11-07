@@ -13,6 +13,8 @@ public interface PedidosService {
 	Pedido getPedido(Integer id); 
 	
 	Pedido añadirPedido(Pedido p);
+	Pedido modificar(Pedido p);
+	Pedido eliminar(Integer id);
 	
 
 }

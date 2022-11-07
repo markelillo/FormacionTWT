@@ -90,7 +90,9 @@ public class PedidosServiceImp implements PedidosService {
 		//return repo.addPedido(p);no con jpa
 		
 		log.info("gestionando pedido");
+		//el save tambien añade lo que tnegas en el body
 		return repoJPA.save(p);
+		
 	}
 
 	
@@ -100,6 +102,20 @@ public class PedidosServiceImp implements PedidosService {
 		//return repo.getById(id); no con jpA
 		Optional<Pedido> p = repoJPA.findById(id);
 		return p.get();
+	}
+
+	@Override
+	public Pedido modificar(Pedido p) {
+		repoJPA.save(p);
+		return null;
+	}
+
+	
+
+	@Override
+	public Pedido eliminar(Integer id) {
+		repoJPA.deleteById(id);
+		return null;
 	}
 
 	
