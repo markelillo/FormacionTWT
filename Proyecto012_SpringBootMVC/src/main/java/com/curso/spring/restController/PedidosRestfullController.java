@@ -1,13 +1,16 @@
 package com.curso.spring.restController;
 
+import java.net.http.HttpRequest;
 import java.util.Collection;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +32,7 @@ methods = {RequestMethod.GET,
 		RequestMethod.DELETE, 
 		RequestMethod.PUT,
 		RequestMethod.OPTIONS
-})//permitir que puedas acceder desde el servidor 8080 añl 4200
+})//permitir que puedas acceder desde el servidor 8080 al 4200
 
 public class PedidosRestfullController {
 	private static Logger log = LoggerFactory.getLogger(PedidoJPARepositoryImp.class);
@@ -70,7 +73,14 @@ public class PedidosRestfullController {
 	@DeleteMapping("/ws/pedidos/delete/{id}")
 	public void delete(@PathVariable Integer id) throws PedidosException {
 		pedidosService.eliminar(id);
+		//return "{ok}";//esto es para que si va bien te lo de vuelva i sino pone a este mensaje
 		
 		
 	}
+	
+	/*@ExceptionHandler({PedidosException.class, Exception.class})
+	public String manejarExcepcion(HttpRequest req, Exception e){
+		return "error"+ e.getMessage();
+		
+	}*/
 }
